@@ -48,9 +48,21 @@ if (Meteor.isClient) {
       var form = tmpl.find('form');
       form.reset();
     }
-  })
+  });
+
+  Template.TodosCount.helpers({
+    completedCount: function() {
+      return Todos.find({is_done: true}).count();
+    },
+
+    totalCount: function() {
+      return Todos.find({}).count();
+    }
+  });
 }
 
 if (Meteor.isServer) {
-
+  Meteor.publish('todos', function() {
+    return Todos.find();
+  })
 }
