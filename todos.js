@@ -8,6 +8,10 @@ if (Meteor.isClient) {
           created_at: -1
         }
       });
+    },
+
+    isDoneClass: function() {
+      return this.is_done ? 'done' : '';
     }
   });
 
